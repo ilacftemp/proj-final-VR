@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "proj-final-VR.sln"
+    "dotnet.defaultSolution": "CookingMania.sln"
 }
