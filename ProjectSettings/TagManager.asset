@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - Faca
+  - FatiasMaca
+  - Canela
+  - Acucar
+  - Manteiga
   layers:
   - Default
   - TransparentFX
