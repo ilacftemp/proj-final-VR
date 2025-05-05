@@ -13,6 +13,8 @@ TagManager:
   - Dough
   - FlatDough
   - RollingPin
+  - Molde
+  - Cannoli
   layers:
   - Default
   - TransparentFX
