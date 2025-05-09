@@ -7,8 +7,7 @@ public class MisturaComEspatula : MonoBehaviour
     public float limiteDeMovimento = 0.3f;
     public GameObject recheioProntoVisual;
 
-    [Tooltip("Lista de ingredientes visuais que vão sumir após misturar.")]
-    public List<GameObject> ingredientesVisuais = new List<GameObject>();
+    private List<GameObject> ingredientesVisuais = new List<GameObject>();
 
     private Vector3 ultimaPosicao;
     private float movimentoAcumulado = 0f;
@@ -27,6 +26,9 @@ public class MisturaComEspatula : MonoBehaviour
     {
         if (misturaFinalizada || espatula == null) return;
 
+        var tipo = GetComponentInParent<ReceitaRecheio>()?.receitaAtual ?? TipoReceita.Nenhuma;
+        if (tipo != TipoReceita.Recheio) return;
+
         float deslocamento = Vector3.Distance(espatula.position, ultimaPosicao);
         ultimaPosicao = espatula.position;
         movimentoAcumulado += deslocamento;
@@ -40,25 +42,17 @@ public class MisturaComEspatula : MonoBehaviour
     void FinalizarMistura()
     {
         misturaFinalizada = true;
-
         foreach (var ingrediente in ingredientesVisuais)
-        {
-            if (ingrediente != null)
-                Destroy(ingrediente);
-        }
+            if (ingrediente != null) Destroy(ingrediente);
 
-        if (recheioProntoVisual != null)
-            recheioProntoVisual.SetActive(true);
-
-        Debug.Log("Mistura finalizada. Ingredientes sumiram, recheio pronto ativo.");
+        recheioProntoVisual?.SetActive(true);
+        Debug.Log("Mistura do recheio finalizada!");
     }
 
     bool TodosIngredientesPresentes()
     {
         foreach (var ingrediente in ingredientesVisuais)
-        {
             if (ingrediente == null) return false;
-        }
         return true;
     }
 

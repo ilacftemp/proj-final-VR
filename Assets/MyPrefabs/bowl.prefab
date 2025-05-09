@@ -172,18 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7283fe86719a95347ba83e778f41b7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontosPorIngrediente: 10
-  fueParaMisturar: {fileID: 9037677491854248761, guid: 70d5f57aec4385e4b8ebbbc679fb88ca, type: 3}
-  visuaisDosIngredientes:
-  - tag: FatiasMaca
-    visualPrefab: {fileID: 5537930926745085732, guid: 1dd663914c798c4469dece7caa6b8a0c, type: 3}
-    localPosition: {x: -0.0244, y: 0.0319, z: 0}
-  - tag: Canela
-    visualPrefab: {fileID: 7564939984753405679, guid: a28273ff7306f344b9b5f5a839594a6d, type: 3}
-    localPosition: {x: 0.6891, y: 0.0514, z: 0.2802}
-  - tag: Manteiga
-    visualPrefab: {fileID: 9034399783658328114, guid: f8ca67e682f73d448bf30fb10241366a, type: 3}
-    localPosition: {x: 0.7184, y: 0.0463, z: 0.2602}
-  - tag: Acucar
-    visualPrefab: {fileID: 1656977982976946275, guid: bdf9704f3b9f52142b7244bf2c1d46dd, type: 3}
-    localPosition: {x: 0.6636, y: 0.0558, z: 0.2535}
+  prefabFatiasMaca: {fileID: 5537930926745085732, guid: 1dd663914c798c4469dece7caa6b8a0c, type: 3}
+  prefabCanela: {fileID: 7564939984753405679, guid: a28273ff7306f344b9b5f5a839594a6d, type: 3}
+  prefabManteiga: {fileID: 9034399783658328114, guid: f8ca67e682f73d448bf30fb10241366a, type: 3}
+  prefabAcucar: {fileID: 1656977982976946275, guid: bdf9704f3b9f52142b7244bf2c1d46dd, type: 3}
+  prefabAgua: {fileID: 3015469641255341787, guid: df64c55026185714caae910000283474, type: 3}
+  prefabFarinha: {fileID: 0}
