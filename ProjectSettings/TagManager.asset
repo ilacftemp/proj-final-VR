@@ -18,6 +18,8 @@ TagManager:
   - LeftHand
   - RightHand
   - Maca
+  - Massa
+  - Rolo
   layers:
   - Default
   - TransparentFX

@@ -3,18 +3,27 @@ using UnityEngine;
 public class CuttingPlate : MonoBehaviour
 {
     public GameObject macaNaTábua;
-    public GameObject macaNaMaoDoPlayer;
+    public GameObject massaNaTábua;
 
-    private bool macaAtivada = false;
+    private bool itemAtivado = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (!macaAtivada && other.CompareTag("Maca"))
+        if (itemAtivado) return;
+
+        if (other.CompareTag("Maca") && macaNaTábua != null)
         {
-            macaNaTábua?.SetActive(true);
+            macaNaTábua.SetActive(true);
             other.gameObject.SetActive(false);
-            macaAtivada = true;
+            itemAtivado = true;
             Debug.Log("Maçã ativada na tábua.");
+        }
+        else if (other.CompareTag("Massa") && massaNaTábua != null)
+        {
+            massaNaTábua.SetActive(true);
+            other.gameObject.SetActive(false);
+            itemAtivado = true;
+            Debug.Log("Massa ativada na tábua.");
         }
     }
 }
