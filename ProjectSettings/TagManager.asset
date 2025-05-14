@@ -17,6 +17,7 @@ TagManager:
   - Cannoli
   - LeftHand
   - RightHand
+  - Maca
   layers:
   - Default
   - TransparentFX

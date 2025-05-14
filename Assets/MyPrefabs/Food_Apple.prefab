@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 3789946980868490485}
   - component: {fileID: -1471433869744978965}
   - component: {fileID: 3128967789757852829}
-  - component: {fileID: -735151430890573320}
+  - component: {fileID: 7408699954163754586}
   m_Layer: 0
   m_Name: Food_Apple
-  m_TagString: Untagged
+  m_TagString: Maca
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
---- !u!114 &-735151430890573320
+--- !u!114 &7408699954163754586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,8 +270,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8890508618791391049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4be27cd44c0dee489bb7c713ef62c8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 34bc467d106772946824cbaa8868b874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proximoEstagioPrefab: {fileID: 852897148721895107, guid: 57fac217fefc9904db3288cbff2fe3f1, type: 3}
-  pontos: 5
+  macaInteira: {fileID: 8890508618791391049}
+  fatiasMaca: {fileID: 5537930926745085732, guid: 1dd663914c798c4469dece7caa6b8a0c, type: 3}
