@@ -9,67 +9,43 @@ public class MisturaComFouet : MonoBehaviour
     public GameObject massaMisturadaVisual;
     public GameObject massaHomogeneaVisual;
 
-    public List<GameObject> ingredientesVisuais = new List<GameObject>();
-
+    private ReceitaRecheio receita;
     private Vector3 ultimaPosicao;
     private float movimentoAcumulado = 0f;
     private int estagio = 0;
 
     void Start()
     {
-        if (fouet != null)
-            ultimaPosicao = fouet.position;
-
+        if (fouet != null) ultimaPosicao = fouet.position;
         massaMisturadaVisual?.SetActive(false);
         massaHomogeneaVisual?.SetActive(false);
+        receita = GetComponentInParent<ReceitaRecheio>();
     }
 
     void Update()
     {
-        var tipo = GetComponentInParent<ReceitaRecheio>()?.receitaAtual ?? TipoReceita.Nenhuma;
-        if (tipo != TipoReceita.Massa || fouet == null || estagio == 2) return;
+        if (receita == null || receita.receitaAtual != TipoReceita.Massa || fouet == null || estagio == 2) return;
 
         float deslocamento = Vector3.Distance(fouet.position, ultimaPosicao);
         ultimaPosicao = fouet.position;
         movimentoAcumulado += deslocamento;
 
-        if (TodosIngredientesPresentes())
+        if (!receita.TodosIngredientesAdicionados()) return;
+
+        if (movimentoAcumulado >= movimentoEstagio2 && estagio == 1)
         {
-            if (movimentoAcumulado >= movimentoEstagio2 && estagio == 1)
-                FinalizarEstagio2();
-            else if (movimentoAcumulado >= movimentoEstagio1 && estagio == 0)
-                FinalizarEstagio1();
+            estagio = 2;
+            foreach (var ing in receita.GetIngredientesVisuais())
+                Destroy(ing);
+            massaMisturadaVisual?.SetActive(false);
+            massaHomogeneaVisual?.SetActive(true);
+            Debug.Log("Massa homogênea pronta!");
         }
-    }
-
-    void FinalizarEstagio1()
-    {
-        estagio = 1;
-        massaMisturadaVisual?.SetActive(true);
-        Debug.Log("Estágio 1: Massa parcialmente misturada.");
-    }
-
-    void FinalizarEstagio2()
-    {
-        estagio = 2;
-        foreach (var ingrediente in ingredientesVisuais)
-            if (ingrediente != null) Destroy(ingrediente);
-
-        massaMisturadaVisual?.SetActive(false);
-        massaHomogeneaVisual?.SetActive(true);
-        Debug.Log("Estágio 2: Massa homogênea pronta.");
-    }
-
-    bool TodosIngredientesPresentes()
-    {
-        foreach (var i in ingredientesVisuais)
-            if (i == null) return false;
-        return true;
-    }
-
-    public void AdicionarIngredienteVisual(GameObject ingrediente)
-    {
-        if (!ingredientesVisuais.Contains(ingrediente))
-            ingredientesVisuais.Add(ingrediente);
+        else if (movimentoAcumulado >= movimentoEstagio1 && estagio == 0)
+        {
+            estagio = 1;
+            massaMisturadaVisual?.SetActive(true);
+            Debug.Log("Massa parcialmente misturada.");
+        }
     }
 }
