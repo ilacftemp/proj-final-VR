@@ -21,6 +21,10 @@ TagManager:
   - Massa
   - Rolo
   - PizzaCutter
+  - FormaVazia
+  - FormaComMassa
+  - TortaComRecheio
+  - Formas
   layers:
   - Default
   - TransparentFX
