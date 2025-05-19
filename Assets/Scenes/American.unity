@@ -1242,6 +1242,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca29c74284c40524f8edb533636550f9, type: 3}
+--- !u!1 &209038241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209038243}
+  - component: {fileID: 209038242}
+  m_Layer: 0
+  m_Name: FornoController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &209038242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209038241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1f964246e83ee4a97cae2e331d8901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portaAberta: {fileID: 2095844282}
+  portaFechada: {fileID: 957025363}
+--- !u!4 &209038243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209038241}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0781884, y: 0.7477248, z: -2.4546735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &227815727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4292,7 +4338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd906ad3ac0e7942bba7c2a7b83b31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoParaAtivar: {fileID: 2095844282}
+  forno: {fileID: 0}
 --- !u!114 &957025365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8713,7 +8759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd906ad3ac0e7942bba7c2a7b83b31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoParaAtivar: {fileID: 957025363}
+  forno: {fileID: 0}
 --- !u!23 &2095844285
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9392,7 +9438,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9035655634202712740, guid: df7ab85774534964b8d4445fc1a85f07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8236152996051944326}
   m_SourcePrefab: {fileID: 100100000, guid: df7ab85774534964b8d4445fc1a85f07, type: 3}
 --- !u!4 &6861700526876863910 stripped
 Transform:
@@ -9550,6 +9599,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9035655634202712740, guid: df7ab85774534964b8d4445fc1a85f07, type: 3}
   m_PrefabInstance: {fileID: 5099793278835365025}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8236152996051944326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846579196188860723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55aae7f885b98140b227d9652cb67fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tortaNaMao: {fileID: 9035655634202712740, guid: df7ab85774534964b8d4445fc1a85f07, type: 3}
+  maoDoJogador: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9585,3 +9648,4 @@ SceneRoots:
   - {fileID: 1042407149}
   - {fileID: 7565037816440708736}
   - {fileID: 172326936}
+  - {fileID: 209038243}

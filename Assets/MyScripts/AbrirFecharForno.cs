@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class AbrirFecharForno : MonoBehaviour
 {
-    public GameObject objetoParaAtivar;
+    public ControleForno forno;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (objetoParaAtivar != null)
-            objetoParaAtivar.SetActive(true);
-
-        gameObject.SetActive(false);
+        if (other.CompareTag("PlayerHand"))
+        {
+            forno.AlternarEstadoForno();
+        }
     }
 }
