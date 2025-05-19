@@ -20,6 +20,7 @@ TagManager:
   - Maca
   - Massa
   - Rolo
+  - PizzaCutter
   layers:
   - Default
   - TransparentFX
