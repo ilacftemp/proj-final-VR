@@ -3,17 +3,16 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject riceBallPrefab;
+    public GameObject itemPrefab;
     public Transform spawnPoint;
     private bool hasSpawned = false;
-
 
     private bool handInside = false;
     private XRController currentController;
 
     void OnTriggerEnter(Collider other)
     {
-        UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
+        var interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
         if (interactor != null)
         {
             currentController = other.GetComponentInParent<XRController>();
@@ -23,7 +22,7 @@ public class ItemSpawner : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
+        var interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
         if (interactor != null)
         {
             currentController = null;
@@ -38,20 +37,21 @@ public class ItemSpawner : MonoBehaviour
         {
             if (triggerPressed && !hasSpawned)
             {
-                SpawnRiceBall();
+                SpawnItem();
                 hasSpawned = true;
             }
             else if (!triggerPressed)
             {
-                hasSpawned = false; 
+                hasSpawned = false;
             }
         }
     }
-    void SpawnRiceBall()
+
+    void SpawnItem()
     {
-        if (riceBallPrefab != null && spawnPoint != null)
+        if (itemPrefab != null && spawnPoint != null)
         {
-            Instantiate(riceBallPrefab, spawnPoint.position, spawnPoint.rotation);
+            Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }
