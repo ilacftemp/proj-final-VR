@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class DoughFlattener : MonoBehaviour
 {
-    public GameObject doughObject;        // Massa original
-    public GameObject flatDoughObject;    // Massa achatada
+    public GameObject doughObject;       
+    public GameObject flatDoughObject;  
+    public GameObject poofEffect;        
 
     private bool hasDough = false;
     private bool hasRollingPin = false;
@@ -41,6 +42,13 @@ public class DoughFlattener : MonoBehaviour
 
     void FlattenDough()
     {
+        if (poofEffect != null && doughObject != null)
+        {
+            Vector3 spawnPosition = doughObject.transform.position + Vector3.up * 0.05f;
+            GameObject effect = Instantiate(poofEffect, spawnPosition, Quaternion.identity);
+            Destroy(effect, 2f); // destrói após 2 segundos
+        }
+
         doughObject.SetActive(false);
         flatDoughObject.SetActive(true);
     }
