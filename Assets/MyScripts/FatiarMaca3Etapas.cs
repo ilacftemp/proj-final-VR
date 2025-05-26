@@ -10,7 +10,7 @@ public class FatiarMaca3Etapas : MonoBehaviour
 
     void Start()
     {
-        visualInteira?.SetActive(true);
+        // visualInteira?.SetActive(false);
         visualCortada?.SetActive(false);
         visualFatias?.SetActive(false);
     }

@@ -17,7 +17,7 @@ public class CortarMassaEmTiras : MonoBehaviour
         {
             massaJaFoiCortada = true;
 
-            massaDividida.SetActive(true);
+            // massaDividida.SetActive(true);
             gameObject.SetActive(false);
 
             TornarPegavel(massaDividida);

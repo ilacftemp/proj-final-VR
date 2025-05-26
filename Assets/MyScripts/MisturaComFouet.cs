@@ -4,19 +4,18 @@ using System.Collections.Generic;
 public class MisturaComFouet : MonoBehaviour
 {
     public Transform fouet;
-    public float movimentoEstagio1 = 0.3f;
-    public float movimentoEstagio2 = 0.6f;
+    public float tempoParaEstagio1 = 2f;
+    public float tempoParaEstagio2 = 5f;
     public GameObject massaMisturadaVisual;
     public GameObject massaHomogeneaVisual;
 
     private ReceitaRecheio receita;
-    private Vector3 ultimaPosicao;
-    private float movimentoAcumulado = 0f;
+    private float tempoContato = 0f;
     private int estagio = 0;
+    private bool fouetEmContato = false;
 
     void Start()
     {
-        if (fouet != null) ultimaPosicao = fouet.position;
         massaMisturadaVisual?.SetActive(false);
         massaHomogeneaVisual?.SetActive(false);
         receita = GetComponentInParent<ReceitaRecheio>();
@@ -24,28 +23,40 @@ public class MisturaComFouet : MonoBehaviour
 
     void Update()
     {
-        if (receita == null || receita.receitaAtual != TipoReceita.Massa || fouet == null || estagio == 2) return;
-
-        float deslocamento = Vector3.Distance(fouet.position, ultimaPosicao);
-        ultimaPosicao = fouet.position;
-        movimentoAcumulado += deslocamento;
-
+        if (receita == null || receita.receitaAtual != TipoReceita.Massa || estagio == 2) return;
         if (!receita.TodosIngredientesAdicionados()) return;
 
-        if (movimentoAcumulado >= movimentoEstagio2 && estagio == 1)
+        if (fouetEmContato)
         {
-            estagio = 2;
-            foreach (var ing in receita.GetIngredientesVisuais())
-                Destroy(ing);
-            massaMisturadaVisual?.SetActive(false);
-            massaHomogeneaVisual?.SetActive(true);
-            Debug.Log("Massa homogênea pronta!");
+            tempoContato += Time.deltaTime;
+
+            if (tempoContato >= tempoParaEstagio2 && estagio == 1)
+            {
+                estagio = 2;
+                foreach (var ing in receita.GetIngredientesVisuais())
+                    Destroy(ing);
+                massaMisturadaVisual?.SetActive(false);
+                massaHomogeneaVisual?.SetActive(true);
+                Debug.Log("Massa homogênea pronta!");
+            }
+            else if (tempoContato >= tempoParaEstagio1 && estagio == 0)
+            {
+                estagio = 1;
+                massaMisturadaVisual?.SetActive(true);
+                Debug.Log("Massa parcialmente misturada.");
+            }
         }
-        else if (movimentoAcumulado >= movimentoEstagio1 && estagio == 0)
-        {
-            estagio = 1;
-            massaMisturadaVisual?.SetActive(true);
-            Debug.Log("Massa parcialmente misturada.");
-        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform == fouet)
+            fouetEmContato = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform == fouet)
+            fouetEmContato = false;
     }
 }

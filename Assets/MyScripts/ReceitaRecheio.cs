@@ -18,12 +18,12 @@ public class ReceitaRecheio : MonoBehaviour
     {
         mapaDeVisuais = new Dictionary<string, GameObject>
         {
-            { "FatiasMaca", transform.Find("Slices")?.gameObject },
-            { "Canela", transform.Find("pile_of_cinnamon")?.gameObject },
-            { "Manteiga", transform.Find("spread_butter")?.gameObject },
-            { "Acucar", transform.Find("powdered_sugar")?.gameObject },
-            { "Agua", transform.Find("Agua")?.gameObject },
-            { "Farinha", transform.Find("Farinha")?.gameObject }
+            { "FatiasMaca", transform.Find("fatias")?.gameObject },
+            { "Canela", transform.Find("canela")?.gameObject },
+            { "Manteiga", transform.Find("manteiga")?.gameObject },
+            { "Acucar", transform.Find("acucar")?.gameObject },
+            { "Agua", transform.Find("agua")?.gameObject },
+            { "Farinha", transform.Find("farinha")?.gameObject }
         };
 
         foreach (var go in mapaDeVisuais.Values)

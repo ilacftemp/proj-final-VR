@@ -10,7 +10,7 @@ public class MassaController : MonoBehaviour
 
     void Start()
     {
-        massaGrande?.SetActive(true);
+        // massaGrande?.SetActive(true);
         massaPequena1?.SetActive(false);
         massaPequena2?.SetActive(false);
     }

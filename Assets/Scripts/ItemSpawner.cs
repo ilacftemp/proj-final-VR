@@ -1,57 +1,30 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject itemPrefab;
+    public GameObject prefab;
     public Transform spawnPoint;
-    private bool hasSpawned = false;
-
-    private bool handInside = false;
-    private XRController currentController;
+    public string tagDoItem = "Item";
+    private bool temItemDentro = false;
 
     void OnTriggerEnter(Collider other)
     {
-        var interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
-        if (interactor != null)
-        {
-            currentController = other.GetComponentInParent<XRController>();
-            handInside = true;
-        }
+        if (other.CompareTag(tagDoItem))
+            temItemDentro = true;
     }
 
     void OnTriggerExit(Collider other)
     {
-        var interactor = other.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor>();
-        if (interactor != null)
-        {
-            currentController = null;
-            handInside = false;
-        }
+        if (other.CompareTag(tagDoItem))
+            temItemDentro = false;
     }
 
     void Update()
     {
-        if (handInside && currentController != null &&
-            currentController.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool triggerPressed))
+        if (!temItemDentro)
         {
-            if (triggerPressed && !hasSpawned)
-            {
-                SpawnItem();
-                hasSpawned = true;
-            }
-            else if (!triggerPressed)
-            {
-                hasSpawned = false;
-            }
-        }
-    }
-
-    void SpawnItem()
-    {
-        if (itemPrefab != null && spawnPoint != null)
-        {
-            Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject novoItem = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation, transform);
+            temItemDentro = true;
         }
     }
 }

@@ -25,6 +25,12 @@ TagManager:
   - FormaComMassa
   - TortaComRecheio
   - Formas
+  - PileOfFlower
+  - MassaDividida
+  - MassaFatiada
+  - Agua
+  - Farinha
+  - Fue
   layers:
   - Default
   - TransparentFX

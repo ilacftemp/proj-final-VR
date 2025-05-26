@@ -8,21 +8,32 @@ public class SpawnOnRemove : MonoBehaviour
 
     void Start()
     {
-        SpawnNew();
+       // SpawnNew();
     }
 
     void Update()
     {
-        if (currentInstance == null && !isRespawning)
-        {
-            isRespawning = true;
-            Invoke(nameof(SpawnNew), 0.1f); // pequena espera evita duplo spawn
-        }
+        // if (currentInstance == null && !isRespawning)
+        // {
+        //     isRespawning = true;
+        //     
+        // }
     }
 
-    void SpawnNew()
+    public void SpawnNew()
     {
+        Debug.Log("SpawnNew called");
         currentInstance = Instantiate(prefabToSpawn, transform.position, transform.rotation, transform);
         isRespawning = false;
+    }
+    
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PileOfFlower"))
+        {
+            Invoke(nameof(SpawnNew), 0.5f); // pequena espera evita duplo spawn
+            Debug.Log("Spawned new object: " + prefabToSpawn.name);
+        }
     }
 }

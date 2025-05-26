@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pile_of_cinnamon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7232fd728c35fc8499ed296bc032ddc9, type: 3}
+      propertyPath: m_TagString
+      value: Canela
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -259,5 +263,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.016912907, y: 0.032, z: 0.019011607}
-  m_Center: {x: 0.0000028451902, y: 0.018, z: -0.000007895286}
+  m_Size: {x: 0.016912907, y: 0.008244549, z: 0.019011607}
+  m_Center: {x: 0.0000028454356, y: 0.006122261, z: -0.00000789541}
