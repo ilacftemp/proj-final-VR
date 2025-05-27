@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class DoughFlattener : MonoBehaviour
 {
-    public GameObject doughObject;       
-    public GameObject flatDoughObject;  
-    public GameObject poofEffect;        
+    public GameObject doughObject;
+    public GameObject flatDoughObject;
+    public GameObject poofEffect;
 
     private bool hasDough = false;
     private bool hasRollingPin = false;
+
+    private void Start()
+    {
+        // Certifique-se de que o objeto de massa achatada esteja desativado no início
+        flatDoughObject.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,29 +33,23 @@ public class DoughFlattener : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void FlattenDough()
     {
-        if (other.CompareTag("Dough"))
-        {
-            hasDough = false;
-        }
+        // Desativa o objeto de massa original
+        // doughObject.SetActive?(false);
+        // Destroi o objeto de massa original
+        Destroy(doughObject);
 
-        if (other.CompareTag("RollingPin"))
-        {
-            hasRollingPin = false;
-        }
-    }
-
-    void FlattenDough()
-    {
-        if (poofEffect != null && doughObject != null)
-        {
-            Vector3 spawnPosition = doughObject.transform.position + Vector3.up * 0.05f;
-            GameObject effect = Instantiate(poofEffect, spawnPosition, Quaternion.identity);
-            Destroy(effect, 2f); // destrói após 2 segundos
-        }
-
-        doughObject.SetActive(false);
+        // Ativa o objeto de massa achatada
         flatDoughObject.SetActive(true);
+
+        // Instancia o efeito de poof
+        Instantiate(poofEffect, transform.position, Quaternion.identity);
+
+        // Reseta os estados
+        hasDough = false;
+        hasRollingPin = false;
+
+        Debug.Log("Massa achatada com sucesso!");
     }
 }

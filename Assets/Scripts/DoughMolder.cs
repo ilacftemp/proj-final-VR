@@ -6,20 +6,21 @@ public class DoughMolder : MonoBehaviour
     public GameObject moldedDough;     // Massa moldada (cannoli)
     public GameObject poofEffect;      // Prefab do efeito com som e partículas
 
+    private void Start()
+    {
+        // Certifique-se de que o objeto de massa moldada esteja desativado no início
+        moldedDough.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("FlatDough"))
         {
-            // Instancia o efeito visual + som
-            if (poofEffect != null && flatDough != null)
-            {
-                Vector3 spawnPosition = flatDough.transform.position + Vector3.up * 0.05f;
-                GameObject effect = Instantiate(poofEffect, spawnPosition, Quaternion.identity);
-                Destroy(effect, 2f); // destrói após 2 segundos
-            }
+            Destroy(flatDough);
 
-            flatDough.SetActive(false);
             moldedDough.SetActive(true);
+            Instantiate(poofEffect, transform.position, Quaternion.identity);
+            Debug.Log("Massa moldada com sucesso!");
         }
     }
 }
