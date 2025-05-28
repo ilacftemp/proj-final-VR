@@ -27,8 +27,7 @@ public class StoveHeater : MonoBehaviour
 
     void AtivarFritura()
     {
-        if (fryCannoliScript != null)
-            fryCannoliScript.isOilHot = true;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,8 +48,6 @@ public class StoveHeater : MonoBehaviour
             if (smokeEffect != null)
                 smokeEffect.SetActive(false);
 
-            if (fryCannoliScript != null)
-                fryCannoliScript.isOilHot = false;
         }
     }
 }

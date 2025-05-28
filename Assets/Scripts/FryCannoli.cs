@@ -1,32 +1,50 @@
 using UnityEngine;
+using System.Collections;
 
 public class FryCannoli : MonoBehaviour
 {
-    public GameObject rawCannoli;          // Objeto cru (enrolado no cilindro)
-    public GameObject cookedCannoli;       // Objeto pronto (frito)
-    public float fryTime = 10f;            // Tempo de fritura
-    public bool isOilHot = false;          // Controle de ativação
-    private bool isFrying = false;
+    public GameObject rawCannoli;         // Cannoli cru
+    public GameObject cookedCannoli;      // Cannoli frito
+
+    public GameObject DoneCannoli;
+    public GameObject poofEffect;         // Efeito de fritura
+    public float fryTime = 10f;           // Tempo de fritura
+
+
+    private void Start()
+    {
+        cookedCannoli.SetActive(false); // Garante que o frito começa desativado
+        DoneCannoli.SetActive(false);   // Garante que o cannoli pronto começa desativado
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isOilHot || isFrying) return;
 
-        if (other.gameObject == rawCannoli)
+        if (other.CompareTag("Cannoli"))
         {
-            isFrying = true;
-            StartCoroutine(Fry());
+            Debug.Log("Cannoli detected, starting to fry...");
+
+            // Destroy(rawCannoli);          // Esconde o cru
+            rawCannoli.SetActive(false);    // Esconde o cru
+            cookedCannoli.SetActive(true);
+            StartCoroutine(FryProcess());
         }
     }
 
-    private System.Collections.IEnumerator Fry()
+    private IEnumerator FryProcess()
     {
         yield return new WaitForSeconds(fryTime);
 
-        rawCannoli.SetActive(false);
-        cookedCannoli.SetActive(true);
-        cookedCannoli.transform.position = rawCannoli.transform.position;
+        // Mostra poof
+        Instantiate(poofEffect, rawCannoli.transform.position, Quaternion.identity);
 
-        isFrying = false;
+        // Troca visual
+        // Mostra o frito
+        Debug.Log("Cannoli is ready!");
+
+        DoneCannoli.SetActive(true);
+        cookedCannoli.SetActive(false); // Esconde o frito
+        
+        
     }
 }

@@ -14,6 +14,10 @@ public class DoughMolder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        // Debug.Log("DoughMolder OnTriggerEnter: " + other.name);
+
+
         if (other.CompareTag("FlatDough"))
         {
             Destroy(flatDough);
